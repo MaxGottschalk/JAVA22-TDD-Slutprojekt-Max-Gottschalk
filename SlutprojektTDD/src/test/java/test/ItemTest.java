@@ -82,7 +82,7 @@ class ItemTest {
     @DisplayName("Test toString method with numbers input")
     public void testToStringWithNumbers() {
         String itemId = "1234";
-        Item item = new Item(itemId);
+        MockHelperItem item = new MockHelperItem(itemId);
 
         assertEquals(itemId.toLowerCase(), item.toString());
     }
