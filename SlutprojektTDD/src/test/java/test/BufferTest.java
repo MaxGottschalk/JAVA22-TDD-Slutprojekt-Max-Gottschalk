@@ -8,11 +8,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 
 import main.Item;
 import test.mockedObjects.MockConsumer;
 import test.mockedObjects.MockHelperBuffer;
+import test.mockedObjects.MockHelperItem;
 import test.mockedObjects.MockProducer;
 
 class BufferTest {
@@ -23,7 +23,7 @@ class BufferTest {
 		public void checkBooleanAddIsTrue() {
 			MockHelperBuffer buffer = new MockHelperBuffer();
 
-	        Item item = new Item("test");
+			MockHelperItem item = new MockHelperItem("test");
 	        assertTrue(buffer.add(item));
 		}
 		
@@ -44,7 +44,7 @@ class BufferTest {
 	    public void testProducerAdd() {
 	        MockHelperBuffer buffer = new MockHelperBuffer();
 	        MockProducer producer = new MockProducer(buffer);
-            Item item = new Item("B");
+	        MockHelperItem item = new MockHelperItem("B");
 
             assertTrue(producer.addItem(item));
             assertNotNull(buffer); 
@@ -55,7 +55,7 @@ class BufferTest {
 	    public void testRemoveWhenNotEmpty() {
 	    	MockHelperBuffer buffer = new MockHelperBuffer();
             MockConsumer consumer = new MockConsumer(buffer);
-            Item item = new Item("B");
+            MockHelperItem item = new MockHelperItem("B");
             buffer.add(item); 
 
             Item removed = consumer.removeItem();
@@ -68,7 +68,7 @@ class BufferTest {
 	    public void testGetBuffer() {
 	        MockHelperBuffer mockHelperBuffer = new MockHelperBuffer();
 
-	        Item mockItem = mock(Item.class);
+	        MockHelperItem mockItem = mock(MockHelperItem.class);
 
 	        mockHelperBuffer.add(mockItem);
 
@@ -92,7 +92,7 @@ class BufferTest {
 	    @DisplayName("Test buffer contents after adding an item")
 	    void testBufferContentsAfterAdd() {
 	        MockHelperBuffer buffer = new MockHelperBuffer();
-	        Item item = new Item("test");
+	        MockHelperItem item = new MockHelperItem("test");
 	        
 	        assertTrue(buffer.add(item));
 
